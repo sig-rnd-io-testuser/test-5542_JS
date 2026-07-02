@@ -9,6 +9,7 @@ const consolidate = require("consolidate"); // Templating library adapter for Ex
 const swig = require("swig");
 // const helmet = require("helmet");
 const MongoClient = require("mongodb").MongoClient; // Driver for connecting to MongoDB
+const MongoStore = require("connect-mongo");
 const http = require("http");
 const marked = require("marked");
 //const nosniff = require('dont-sniff-mimetype');
@@ -80,6 +81,7 @@ MongoClient.connect(db, (err, db) => {
         //    return genuuid() // use UUIDs for session IDs
         //},
         secret: cookieSecret,
+        store: MongoStore.create({ mongoUrl: db }),
         // Both mandatory in Express v4
         saveUninitialized: true,
         resave: true
