@@ -3,6 +3,7 @@ version: "3.7"
 services:
   web:
     build: .
+    read_only: true
     environment:
       NODE_ENV:
       MONGODB_URI: mongodb://mongo:27017/nodegoat
