@@ -155,7 +155,7 @@
         // try to set a test cookie if we can't see any cookies and we're using
         // either a browser that doesn't support navigator.cookieEnabled
         // or IE (which always returns true for navigator.cookieEnabled)
-        if (!document.cookie && cookieEnabled === null) {
+        if (!document.cookie) {
             document.cookie = "testcookie=1";
 
             if (!document.cookie) return false;
