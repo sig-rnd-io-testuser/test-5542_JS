@@ -34,7 +34,8 @@ var state = {
 };
 
 var sutUserName = "user1";
-var sutUserPassword = "User1_123";
+var sutUserPassword = process.env.SUT_USER_PASSWORD;
+assert(sutUserPassword, "SUT_USER_PASSWORD environment variable must be set");
 
 chrome.setDefaultService(service);
 
