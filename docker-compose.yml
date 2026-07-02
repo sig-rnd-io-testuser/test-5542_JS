@@ -3,6 +3,8 @@ version: "3.7"
 services:
   web:
     build: .
+    security_opt:
+      - no-new-privileges:true
     environment:
       NODE_ENV:
       MONGODB_URI: mongodb://mongo:27017/nodegoat
@@ -13,5 +15,7 @@ services:
   mongo:
     image: mongo:4.4
     user: mongodb
+    security_opt:
+      - no-new-privileges:true
     expose:
       - 27017
