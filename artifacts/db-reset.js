@@ -9,13 +9,22 @@
 const { MongoClient } = require("mongodb");
 const { db } = require("../config/config");
 
+const adminPassword = process.env.ADMIN_PASSWORD;
+const user1Password = process.env.USER1_PASSWORD;
+const user2Password = process.env.USER2_PASSWORD;
+
+if (!adminPassword || !user1Password || !user2Password) {
+    console.log("ERROR: Missing required user password environment variables");
+    process.exit(1);
+}
+
 const USERS_TO_INSERT = [
     {
         "_id": 1,
         "userName": "admin",
         "firstName": "Node Goat",
         "lastName": "Admin",
-        "password": "Admin_123",
+        "password": adminPassword,
         //"password" : "$2a$10$8Zo/1e8KM8QzqOKqbDlYlONBOzukWXrM.IiyzqHRYDXqwB3gzDsba", // Admin_123
         "isAdmin": true
     }, {
@@ -24,7 +33,7 @@ const USERS_TO_INSERT = [
         "firstName": "John",
         "lastName": "Doe",
         "benefitStartDate": "2030-01-10",
-        "password": "User1_123"
+        "password": user1Password
         // "password" : "$2a$10$RNFhiNmt2TTpVO9cqZElb.LQM9e1mzDoggEHufLjAnAKImc6FNE86",// User1_123
     }, {
         "_id": 3,
@@ -32,7 +41,7 @@ const USERS_TO_INSERT = [
         "firstName": "Will",
         "lastName": "Smith",
         "benefitStartDate": "2025-11-30",
-        "password": "User2_123"
+        "password": user2Password
         //"password" : "$2a$10$Tlx2cNv15M0Aia7wyItjsepeA8Y6PyBYaNdQqvpxkIUlcONf1ZHyq", // User2_123
     }];
 
