@@ -13,5 +13,7 @@ services:
   mongo:
     image: mongo:4.4
     user: mongodb
+    cap_drop:
+      - ALL
     expose:
       - 27017
